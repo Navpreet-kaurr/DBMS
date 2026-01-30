@@ -1,0 +1,51 @@
+USE shop;
+
+CREATE TABLE payment_ (
+    p_id INT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    amt INT NOT NULL,
+    o_id INT UNIQUE
+);
+
+INSERT INTO payment_ VALUES
+(1, 101, 1000, 201),
+(2, 102, 3000, 202),
+(3, 103, 7000, 203),
+(4, 104, 4000, 204),
+(5, 105, 6000, 205),
+(6, 106, 8000, 206),
+(7, 107, 9000, 207);
+
+CREATE TABLE orders_ (
+    p_id INT PRIMARY KEY,
+    customer_id INT NOT NULL,
+    amt INT NOT NULL,
+    o_id INT UNIQUE,
+    payment_cost INT
+);
+
+INSERT INTO orders_(p_id, customer_id, amt, o_id, payment_cost)
+SELECT p_id, customer_id, amt, o_id, amt
+FROM payment_;
+
+CREATE TABLE order_products (
+    o_id INT PRIMARY KEY,
+    product_name VARCHAR(50),
+    quantity INT
+);
+
+INSERT INTO order_products VALUES
+(201, 'Chair', 1),
+(202, 'Table', 2),
+(203, 'Lamp', 3),
+(204, 'Bookshelf', 4),
+(205, 'Whiteboard', 5),
+(206, 'Organizer', 6),
+(207, 'Clock', 7);
+
+SELECT * FROM payment_;
+
+SELECT p.p_id, p.customer_id, p.amt, o.product_name
+FROM orders p
+LEFT JOIN orders_products o
+ON p.o_id = o.o_id;
