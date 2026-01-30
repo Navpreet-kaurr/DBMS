@@ -26,11 +26,11 @@ This repository contains my Database Management System (DBMS) Practical File, co
 - Views & Indexes
 - Stored Procedures
 
-💡 Sample Query
-SELECT DISTINCT salary
-FROM Employee
-ORDER BY salary DESC
-LIMIT 1 OFFSET 1;
+💡 Sample Query-
+ SELECT DISTINCT salary
+ FROM Employee
+ ORDER BY salary DESC
+ LIMIT 1 OFFSET 1;
 
 🎯 Learning Outcomes
 - Strong understanding of relational databases
